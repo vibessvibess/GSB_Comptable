@@ -17,13 +17,12 @@ $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
 switch ($action) {
 case 'listeVisiteurs':
     $etatRechercher=$pdo->uc_visit();
-    $nom = $pdo->getVisiteur($etatRechercher);// pour afficher la liste des visiteurs
     $idVisiteur = filter_input(INPUT_POST, 'visit', FILTER_SANITIZE_STRING); // recupere l'utilisteur selectionner
     VisiteurSelectionne($idVisiteur);
     $nom = $pdo->getVisiteur($etatRechercher); // pour l'affichage
     $nomASelectionner = $idVisiteur;      // pour que quand la page se recharge l'utilisateur seletionner est mis par defaut 
    
-    include 'vues/v_listeVisiteur.php';
+    include 'vues/v_ChoixV.php';
         break;
     
 case 'listeMois': // lorsqu'il a choisit l'utilisateur
@@ -32,12 +31,12 @@ case 'listeMois': // lorsqu'il a choisit l'utilisateur
     $idVisiteur = filter_input(INPUT_POST, 'visit', FILTER_SANITIZE_STRING); // recupere l'utilisteur selectionner
     VisiteurSelectionne($idVisiteur);
     $nomASelectionner = $idVisiteur; 
-    $lesMois = $pdo->getLesMois($idVisiteur,$etatRechercher);// Afin de sélectionner par défaut le dernier mois dans la zone de liste
+    $lesMois = $pdo->getListeMoisValidation($idVisiteur,$etatRechercher);// Afin de sélectionner par défaut le dernier mois dans la zone de liste
     $lesCles = array_keys($lesMois);
     $mois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
     MoiSelectionne($mois);
     $moisASelectionner = $mois;
-    include 'vues/v_mois.php';
+    include 'vues/v_ChoixM.php';
  break;
 }
-?>
+

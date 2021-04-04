@@ -19,10 +19,6 @@ $idVisiteur = $_SESSION['idUtilisateur'];
 switch ($action) {
 case 'selectionnerMois':
     $lesMois = $pdo->getLesMoisDisponibles($idVisiteur);
-    // Afin de sélectionner par défaut le dernier mois dans la zone de liste
-    // on demande toutes les clés, et on prend la première,
-    // les mois étant triés décroissants
-   
     $lesCles = array_keys($lesMois);
     $moisASelectionner = $lesCles[0];
   
@@ -30,8 +26,8 @@ case 'selectionnerMois':
     break;
 case 'voirEtatFrais':
     $leMois = filter_input(INPUT_POST, 'lstMois', FILTER_SANITIZE_STRING);
-    $lesMois = $pdo->getLesMoisDisponibles($idVisiteur); //Retourne les mois pour lesquel un visiteur a une fiche de frais
-    $moisASelectionner = $leMois; // pour que quand la page se recharge le mois seletionner est mis par defaut 
+    $lesMois = $pdo->getLesMoisDisponibles($idVisiteur); 
+    $moisASelectionner = $leMois; 
     include 'vues/v_listeMois.php';
     $lesFraisHorsForfait = $pdo->getLesFraisHorsForfait($idVisiteur, $leMois);
     $lesFraisForfait = $pdo->getLesFraisForfait($idVisiteur, $leMois);

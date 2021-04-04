@@ -630,7 +630,7 @@ class PdoGsb
      * ou a une fiche MP VA RB selon l'etat mis en parametre
      */
     
-        public function getLesMois($idVisiteur,$etat)
+        public function getListeMoisValidation($idVisiteur,$etat)
     {     
             if ($etat=="CL"){
                 $CL='CL';
