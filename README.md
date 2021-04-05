@@ -1,1 +1,9 @@
-# GSB_Comptable
+LIEN VERS LE SITE GSB_FRAIS : www.vibessvibess.com
+
+TESTE CONNEXION VISITEUR :
+  .Login  dandre
+  .MDP    oppg5
+  
+TESTE CONNEXION COMPTABLE :
+  .Login vibess
+  .MDP   vibess
