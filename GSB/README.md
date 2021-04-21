@@ -1,6 +1,6 @@
 Le site en ligne :
 
-vibessvibess.com
+http://vibessvibess.com
 
 - Visiteur :
   Login  dandre
