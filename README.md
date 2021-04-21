@@ -2,7 +2,7 @@ LIEN VERS LE SITE GSB_FRAIS : http://vibessvibess.com
 
 -TESTE CONNEXION VISITEUR :
 
-  Login  dandre
+  .Login  dandre
   
   .MDP    oppg5
   
