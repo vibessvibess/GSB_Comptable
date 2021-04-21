@@ -320,23 +320,7 @@ function creationFraisHorsForfait($pdo)
     }
 }
 
-/**
- * Fonction qui retourne le mois (au format ID GSB : aaaamm) à partir d'une
- * date passée en paramètre
- *
- * @param String $date Date à utiliser pour extraire le mois
- *
- * @return String avec le mois au format aaaamm
- */
-function getMois($date)
-{
-    @list($jour, $mois, $annee) = explode('/', $date);
-    unset($jour);
-    if (strlen($mois) == 1) {
-        $mois = '0' . $mois;
-    }
-    return $annee . $mois;
-}
+
 
 /**
  * Fonction qui met à jour les montants des fiches de frais (via des UPDATE SQL)
@@ -353,7 +337,7 @@ function majFicheFrais($pdo)
         $mois = $uneFicheFrais['mois'];
         $req = 'select sum(montant) as cumul from lignefraishorsforfait '
             . "where lignefraishorsforfait.idvisiteur = '$idVisiteur' "
-            . "and ligneFraisHorsForfait.mois = '$mois' ";
+            . "and lignefraishorsforfait.mois = '$mois' ";
         $res = $pdo->query($req);
         $ligne = $res->fetch();
         $cumulMontantHF = $ligne['cumul'];

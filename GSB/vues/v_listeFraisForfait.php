@@ -13,40 +13,20 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-
-if($_SESSION['statut']== 'visiteur' ){ // si l'utilisateur est un visiteur
 ?>
-<div class="row" style="float: left;">  
- 
+<div class="row">    
     <h2>Renseigner ma fiche de frais du mois 
         <?php echo $numMois . '-' . $numAnnee ?>
     </h2>
     <h3>Eléments forfaitisés</h3>
-    <div class="col-md-8" >
+    <div class="col-md-4">
         <form method="post" 
               action="index.php?uc=gererFrais&action=validerMajFraisForfait" 
               role="form">
             <fieldset>       
                 <?php
-}else{ 
-// si l'utilisateur est un comptable
-     ?>
-              
-   <div class="container">
-        
-               <div class="mx-auto"  >  
-             </br>
-			 </br>
-                  <h2 style="color:red">Valider la fiche de frais </h2>
-     <h3>Eléments forfaitisés</h3>
-     <div class="col-md-5" style="float:none;">
-         <form action="index.php?uc=corriger_frais&action=validerMajFraisForfaitt"  method="post" role="form">
-            <fieldset>  
-                <?php
-}
                 foreach ($lesFraisForfait as $unFrais) {
                     $idFrais = $unFrais['idfrais'];
-                    
                     $libelle = htmlspecialchars($unFrais['libelle']);
                     $quantite = $unFrais['quantite']; ?>
                     <div class="form-group">
@@ -56,20 +36,13 @@ if($_SESSION['statut']== 'visiteur' ){ // si l'utilisateur est un visiteur
                                size="10" maxlength="5" 
                                value="<?php echo $quantite ?>" 
                                class="form-control">
-                        </div>
-                
-                        <?php
+                    </div>
+                    <?php
                 }
                 ?>
-                </div>  
-                </div>
-   
-     <div class="col-md-8" >
-               <button class="btn btn-success" type="submit">Ajouter</button>
-                <button class="btn btn-danger" type="reset">Réinitialiser</button>
+                <button class="btn btn-success" type="submit">Ajouter</button>
+                <button class="btn btn-danger" type="reset">Effacer</button>
             </fieldset>
         </form>
     </div>
 </div>
-   </div>
-                </div>

@@ -13,9 +13,8 @@
  * @version   GIT: <0>
  * @link      http://www.reseaucerta.org Contexte « Laboratoire GSB »
  */
-?> 
+?>
 <hr>
-
 <div class="panel panel-primary">
     <div class="panel-heading">Fiche de frais du mois 
         <?php echo $numMois . '-' . $numAnnee ?> : </div>
@@ -70,19 +69,5 @@
             <?php
         }
         ?>
-              </table>
-</div> 
-
-           
-           
-                <?php
-           $uc = filter_input(INPUT_GET, 'uc', FILTER_SANITIZE_STRING);
-           if($uc!='etatFrais'){
-           ?>
-<form action="index.php?uc=SuivrePaiement&action=rembourser" method="post" role="form">
-            <button class="btn btn-success" type="submit" class="btn btn-default" name="Demander_Remboursement" value="Demander_Remboursement">Demander Remboursement</button>
-           <button class="btn btn-success" type="submit" class="btn btn-default" name="Confirmer_Remboursement" value="Confirmer_Remboursement">Confirmer Remboursement</button> 
-             </form>
-  <?php
-           }
-           ?>
+    </table>
+</div>

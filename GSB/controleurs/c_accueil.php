@@ -1,4 +1,4 @@
-﻿<?php
+<?php
 /**
  * Gestion de l'accueil
  *
@@ -15,7 +15,7 @@
  */
 
 if ($estConnecte) {
-    include 'vues/v_accueil.php';//si on est connecté a l'appli aller dans la page accueil
+    include 'vues/v_accueil.php';
 } else {
-    include 'vues/v_connexion.php';//si on ne l'est pas rester dans la page connection de l'appli
+    include 'vues/v_connexion.php';
 }

@@ -23,29 +23,21 @@ switch ($action) {
 case 'demandeConnexion':
     include 'vues/v_connexion.php';
     break;
-case 'valideConnexion'://on a juste validé le mot de passe et l'identifiant mais on est pas allé encore a une autre page
+case 'valideConnexion':
     $login = filter_input(INPUT_POST, 'login', FILTER_SANITIZE_STRING);
     $mdp = filter_input(INPUT_POST, 'mdp', FILTER_SANITIZE_STRING);
-    $visiteur = $pdo->getInfosVisiteur($login, $mdp);//dans variable visiteur ya un tableau avec les infos id, nom et prénom
-    $comptable= $pdo->getInfosComptable($login, $mdp);
-    if (!is_array($visiteur) && !is_array($comptable)) {//si la variable visiteur na pas de tableau(array) alors...
+    $visiteur = $pdo->getInfosVisiteur($login, $mdp);
+    if (!is_array($visiteur)) {
         ajouterErreur('Login ou mot de passe incorrect');
         include 'vues/v_erreurs.php';
         include 'vues/v_connexion.php';
     } else {
-        if(is_array($visiteur)){//on a séparé les variables du tableau
-         $idUtilisateur = $visiteur['id'];
-         $nom = $visiteur['nom'];
-         $prenom = $visiteur['prenom'];
-         $statut = 'visiteur';//pour que par la suite on ditingue facilement visiteur de comptable
-        }elseif(is_array ($comptable)){
-         $idUtilisateur = $comptable['id'];
-         $nom = $comptable['nom'];
-         $prenom = $comptable['prenom'];   
-         $statut = 'comptable';
-        }
-        connecter($idUtilisateur, $nom, $prenom,$statut);
-        header('Location: index.php');//permet de renvoyer a une page avec les données existantes
+        $id = $visiteur['id'];
+        $nom = $visiteur['nom'];
+        $prenom = $visiteur['prenom'];
+        $role = $visiteur['role'];
+        connecter($id, $nom, $prenom, $role);
+        header('Location: index.php');
     }
     break;
 default:

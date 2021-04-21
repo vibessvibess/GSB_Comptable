@@ -21,27 +21,26 @@
  */
 function estConnecte()
 {
-    return isset($_SESSION['idUtilisateur']);//isset retourne vrai si le parametre a l'interieur est defini et sinon retourne false  isset(var[parametre]) session //SESSION EN MAJ est une variable superglobale qui contient plusieurs autres variables idvisiteur nom prenom...
+    return isset($_SESSION['idVisiteur']);
 }
-function action(){
-    $action = filter_input(INPUT_GET, 'action', FILTER_SANITIZE_STRING);
-    echo $action;
-}
+
 /**
  * Enregistre dans une variable session les infos d'un visiteur
  *
  * @param String $idVisiteur ID du visiteur
  * @param String $nom        Nom du visiteur
  * @param String $prenom     Prénom du visiteur
+ * @param String $role       role du visiteur
  *
  * @return null
  */
-function connecter($idUtilisateur, $nom, $prenom, $statut)
+function connecter($idVisiteur, $nom, $prenom, $role)
 {
-    $_SESSION['idUtilisateur'] = $idUtilisateur;
+    $_SESSION['idVisiteur'] = $idVisiteur;
     $_SESSION['nom'] = $nom;
     $_SESSION['prenom'] = $prenom;
-    $_SESSION['statut']=$statut;
+    $_SESSION['role'] = $role;
+   
 }
 
 
@@ -116,18 +115,7 @@ function estEntierPositif($valeur)
 {
     return preg_match('/[^0-9]/', $valeur) == 0;
 }
-/**
- * Vérifie que le tableau de frais ne contient que des valeurs numériques
- *
- * @param Array $lesFrais Tableau d'entier
- *
- * @return Boolean vrai ou faux
- */
-function lesQteFraisValides($lesFrais)
-{
-   
-    return estTableauEntiers($lesFrais);
-}
+
 /**
  * Indique si un tableau de valeurs est constitué d'entiers positifs ou nuls
  *
@@ -137,13 +125,11 @@ function lesQteFraisValides($lesFrais)
  */
 function estTableauEntiers($tabEntiers)
 {
-  
     $boolReturn = true;
     foreach ($tabEntiers as $unEntier) {
-        
         if (!estEntierPositif($unEntier)) {
             $boolReturn = false;
-        } 
+        }
     }
     return $boolReturn;
 }
@@ -190,7 +176,17 @@ function estDateValide($date)
     return $dateOK;
 }
 
-
+/**
+ * Vérifie que le tableau de frais ne contient que des valeurs numériques
+ *
+ * @param Array $lesFrais Tableau d'entier
+ *
+ * @return Boolean vrai ou faux
+ */
+function lesQteFraisValides($lesFrais)
+{
+    return estTableauEntiers($lesFrais);
+}
 
 /**
  * Vérifie la validité des trois arguments : la date, le libellé du frais
@@ -256,16 +252,4 @@ function nbErreurs()
     } else {
         return count($_REQUEST['erreurs']);
     }
-}
-
-function VisiteurSelectionne($idVisiteur)
-{
-    $_SESSION['idVisiteur'] = $idVisiteur;
-   
-}
-
-function MoiSelectionne($mois)
-{
-    $_SESSION['mois'] = $mois;
-   
 }
